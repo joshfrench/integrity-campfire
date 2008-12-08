@@ -13,6 +13,7 @@ module Integrity
       def deliver!
         room.speak "#{short_message}. #{commit_url}"
         room.paste full_message if commit.failed?
+        room.leave
       end
 
     private

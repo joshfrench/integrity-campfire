@@ -10,7 +10,7 @@ context "The Campfire notifier" do
       "user"    => "foo",
       "pass"    => "bar" }
     @notifier = Integrity::Notifier::Campfire
-    @room = stub(:speak => nil, :paste => nil)
+    @room = stub(:speak => nil, :paste => nil, :leave => nil)
   end
 
   def notifier
