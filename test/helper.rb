@@ -1,9 +1,12 @@
 require "test/unit"
 require "mocha"
 require "integrity/notifier/test"
-require "redgreen"
-
 require File.dirname(__FILE__) + "/../lib/notifier/campfire"
+
+begin
+  require "redgreen"
+rescue LoadError
+end
 
 class Test::Unit::TestCase
   include Integrity::Notifier::Test
