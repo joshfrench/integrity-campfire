@@ -12,4 +12,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency "integrity"
   s.add_dependency "tinder"
+
+  if s.respond_to?(:add_development_dependency)
+    s.add_development_dependency "mocha"
+  end
 end
