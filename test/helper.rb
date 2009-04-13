@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'mocha'
 require 'integrity/notifier/test'
 require 'redgreen'

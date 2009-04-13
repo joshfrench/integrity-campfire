@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'integrity'
 require 'tinder'
 
