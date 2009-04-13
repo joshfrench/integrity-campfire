@@ -2,30 +2,49 @@ require File.dirname(__FILE__) + '/helper'
 
 context "The Campfire notifier" do
   setup do
-    @config = {}
+    setup_database
+
+    @config = { "account" => "integrity",
+      "use_ssl" => false,
+      "room"    => "ci",
+      "user"    => "foo",
+      "pass"    => "bar" }
     @notifier = Integrity::Notifier::Campfire
+    @room = stub(:speak => nil, :paste => nil)
   end
 
-  test "alerts Campfire on build" do
-    @notifier.any_instance.expects(:room).at_least_once.returns mock(:speak => true)
-    @notifier.any_instance.expects(:short_message).returns('')
-    @notifier.any_instance.expects(:commit_url).returns('')
-    @notifier.notify_of_build(stub_everything(:failed? => false, :project => stub_everything), @config)
+  def notifier
+    "Campfire"
   end
 
-  test "sends the full message on failure only" do
-    @notifier.any_instance.expects(:room).at_least_once.returns mock(:speak => true, :paste => true)
-
-    @notifier.any_instance.expects(:full_message).returns('')
-    @notifier.any_instance.expects(:short_message).returns('')
-    @notifier.any_instance.expects(:commit_url).returns('')
-
-    @notifier.notify_of_build(stub_everything(:failed? => true, :project => stub_everything), @config)
-
+  test "configuration form" do
+    assert_form_have_option "account", @config["account"]
+    assert_form_have_option "use_ssl", @config["use_ssl"]
+    assert_form_have_option "room",    @config["room"]
+    assert_form_have_option "user",    @config["user"]
+    assert_form_have_option "pass",    @config["pass"]
   end
 
-  test "renders a haml config file" do
-    haml = Integrity::Notifier::Campfire.to_haml
-    assert haml.include?('campfire_notifier_account')
+  test "successful build" do
+    build = Integrity::Build.gen(:successful)
+
+    @notifier.any_instance.stubs(:room).at_least_once.returns(@room)
+    @room.expects(:speak).with { |value| value.include?(build.commit.identifier) }
+    @room.expects(:paste).never
+
+    @notifier.notify_of_build(build, @config)
+  end
+
+  test "failed build" do
+    build = Integrity::Build.gen(:failed)
+
+    @notifier.any_instance.stubs(:room).at_least_once.returns(@room)
+    @room.expects(:speak).with { |value| value.include?(build.commit.identifier) }
+    @room.expects(:paste).with { |value|
+      value.include?(build.commit.message) &&
+        value.include?(build.output)
+    }
+
+    @notifier.notify_of_build(build, @config)
   end
 end

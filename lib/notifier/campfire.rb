@@ -28,14 +28,14 @@ module Integrity
       end
 
       def short_message
-        "Build #{commit.short_commit_identifier} of #{commit.project.name} #{commit.successful? ? "was successful" : "failed"}"
+        "Build #{commit.short_identifier} of #{commit.project.name} #{commit.successful? ? "was successful" : "failed"}"
       end
 
       def full_message
         <<-EOM
-Commit Message: #{commit.commit_message}
-Commit Date: #{commit.commited_at}
-Commit Author: #{commit.commit_author.name}
+Commit Message: #{commit.message}
+Commit Date: #{commit.committed_at}
+Commit Author: #{commit.author.name}
 
 #{stripped_build_output}
 EOM

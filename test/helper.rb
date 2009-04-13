@@ -1,3 +1,22 @@
+require 'rubygems'
+require 'mocha'
+require 'integrity/notifier/test'
+require 'redgreen'
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
+require 'notifier/campfire'
+
+class Test::Unit::TestCase
+  include Integrity::Notifier::Test
+end
+
+# NOTE: Because of a bug in integrity/notifier/test/fixtures
+class Array
+  def pick
+    slice(Kernel.rand(size))
+  end
+end
+
 ##
 # test/spec/mini 2
 # http://gist.github.com/25455
@@ -16,9 +35,3 @@ def context(*args, &block)
   end
   klass.class_eval &block
 end
-
-require 'rubygems'
-require 'mocha'
-require 'redgreen'
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
-require 'notifier/campfire'
