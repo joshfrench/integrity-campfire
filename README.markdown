@@ -26,7 +26,7 @@ License
 
 (The MIT License)
 
-Copyright (c) 2008 Chris Wanstrath
+Copyright (c) 2008, 2009 Chris Wanstrath
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
