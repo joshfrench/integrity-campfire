@@ -25,6 +25,15 @@ context "The Campfire notifier" do
     assert_form_have_option "pass",    @config["pass"]
   end
 
+  test "ssl" do
+    @config["use_ssl"] = true
+
+    Tinder::Campfire.expects(:new).with(@config["account"], { :ssl => true }).
+      returns(stub(:login => true, :find_room_by_name => @room))
+
+    @notifier.notify_of_build(Integrity::Build.gen, @config)
+  end
+
   test "successful build" do
     build = Integrity::Build.gen(:successful)
 
