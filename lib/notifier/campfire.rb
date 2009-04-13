@@ -41,5 +41,7 @@ Commit Author: #{commit.author.name}
 EOM
       end
     end
+
+    register Campfire
   end
 end

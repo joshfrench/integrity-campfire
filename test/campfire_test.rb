@@ -17,6 +17,10 @@ context "The Campfire notifier" do
     "Campfire"
   end
 
+  test "it registers itself" do
+    assert_equal @notifier, Integrity::Notifier.available["Campfire"]
+  end
+
   test "configuration form" do
     assert_form_have_option "account", @config["account"]
     assert_form_have_option "use_ssl", @config["use_ssl"]
