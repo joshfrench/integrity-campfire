@@ -3,8 +3,7 @@ require "mocha"
 require "integrity/notifier/test"
 require "redgreen"
 
-$LOAD_PATH.unshift File.dirname(__FILE__) + "/../lib"
-require "notifier/campfire"
+require File.dirname(__FILE__) + "/../lib/notifier/campfire"
 
 class Test::Unit::TestCase
   include Integrity::Notifier::Test
