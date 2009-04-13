@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.email             = "chris@ozmm.org"
   s.authors           = ["Chris Wanstrath"]
   s.has_rdoc          = false
-  s.files             = %w( README.markdown lib/notifier/config.haml lib/notifier/campfire.rb )
 
   s.add_dependency "integrity"
   s.add_dependency "tinder"
@@ -16,4 +15,14 @@ Gem::Specification.new do |s|
   if s.respond_to?(:add_development_dependency)
     s.add_development_dependency "mocha"
   end
+
+  s.files             = %w[
+README.markdown
+Rakefile
+integrity-campfire.gemspec
+lib/notifier/campfire.rb
+lib/notifier/config.haml
+test/campfire_test.rb
+test/helper.rb
+]
 end
