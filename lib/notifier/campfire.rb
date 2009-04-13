@@ -1,5 +1,5 @@
-require 'integrity'
-require 'tinder'
+require "integrity"
+require "tinder"
 
 module Integrity
   class Notifier
@@ -19,10 +19,10 @@ module Integrity
       def room
         @room ||= begin
           options = {}
-          options[:ssl] = config['use_ssl'] ? true : false
-          campfire = Tinder::Campfire.new(config['account'], options)
-          campfire.login(config['user'], config['pass'])
-          campfire.find_room_by_name(config['room'])
+          options[:ssl] = config["use_ssl"] ? true : false
+          campfire = Tinder::Campfire.new(config["account"], options)
+          campfire.login(config["user"], config["pass"])
+          campfire.find_room_by_name(config["room"])
         end
       end
 
