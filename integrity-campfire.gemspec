@@ -9,11 +9,14 @@ Gem::Specification.new do |s|
   s.authors           = ["Chris Wanstrath"]
   s.has_rdoc          = false
 
+  s.rubyforge_project = "integrity"
+
   s.add_dependency "integrity"
   s.add_dependency "tinder"
 
   if s.respond_to?(:add_development_dependency)
     s.add_development_dependency "mocha"
+    s.add_development_dependency "sr-mg"
   end
 
   s.files             = %w[
