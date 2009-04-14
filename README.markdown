@@ -11,8 +11,8 @@ This lets Integrity alert Campfire after each build is made.
 Setup Instructions
 ==================
 
-Just install this gem via `sudo gem install -s http://gems.github.com
-defunkt-integrity-campfire` and then in your Rackup (ie, `config.ru`) file:
+Just install this gem via `gem install integrity-campfire`
+and then in your Rackup (ie, `config.ru`) file:
 
     require "rubygems"
     require "integrity/notifier/campfire"
