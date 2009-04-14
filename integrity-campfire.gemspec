@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "integrity-campfire"
-  s.version           = "1.1.0"
+  s.version           = "1.2.0"
   s.date              = "2009-3-26"
   s.summary           = "Campfire notifier for the Integrity continuous integration server"
   s.description       = "Easily let Integrity alert Campfire after each build"
