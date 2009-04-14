@@ -15,7 +15,7 @@ Just install this gem via `sudo gem install -s http://gems.github.com
 defunkt-integrity-campfire` and then in your Rackup (ie, `config.ru`) file:
 
     require "rubygems"
-    require "notifier/campfire"
+    require "integrity/notifier/campfire"
 
 And badabing! Now you can set up your projects to alert Campfire after
 each build (just edit the project and the config options should be

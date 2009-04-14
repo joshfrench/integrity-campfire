@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
 README.markdown
 Rakefile
 integrity-campfire.gemspec
-lib/notifier/campfire.rb
-lib/notifier/config.haml
+lib/integrity/notifier/campfire.rb
+lib/integrity/notifier/config.haml
 test/campfire_test.rb
 test/helper.rb
 ]

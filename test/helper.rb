@@ -1,7 +1,7 @@
 require "test/unit"
 require "mocha"
 require "integrity/notifier/test"
-require File.dirname(__FILE__) + "/../lib/notifier/campfire"
+require File.dirname(__FILE__) + "/../lib/integrity/notifier/campfire"
 
 begin
   require "redgreen"
