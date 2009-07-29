@@ -8,7 +8,8 @@ context "The Campfire notifier" do
       "use_ssl" => false,
       "room"    => "ci",
       "user"    => "foo",
-      "pass"    => "bar" }
+      "pass"    => "bar",
+      "announce_success" => true }
     @notifier = Integrity::Notifier::Campfire
     @room = stub(:speak => nil, :paste => nil, :leave => nil)
   end
@@ -27,6 +28,7 @@ context "The Campfire notifier" do
     assert_form_have_option "room",    @config["room"]
     assert_form_have_option "user",    @config["user"]
     assert_form_have_option "pass",    @config["pass"]
+    assert_form_have_option "announce_success", @config["announce_success"]
   end
 
   test "ssl" do
@@ -44,6 +46,16 @@ context "The Campfire notifier" do
     @notifier.any_instance.stubs(:room).at_least_once.returns(@room)
     @room.expects(:speak).with { |value| value.include?(build.commit.identifier) }
     @room.expects(:paste).never
+
+    @notifier.notify_of_build(build, @config)
+  end
+
+  test "don't announce successes" do
+    build = Integrity::Build.gen(:successful)
+
+    @config['announce_success'] = false
+    @notifier.any_instance.stubs(:room).at_least_once.returns(@room)
+    @room.expects(:speak).never
 
     @notifier.notify_of_build(build, @config)
   end

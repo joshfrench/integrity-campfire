@@ -17,3 +17,7 @@
 %p.normal
   %label{ :for => "campfire_notifier_pass" } Password
   %input.text#campfire_notifier_pass{ :name => "notifiers[Campfire][pass]", :value => config["pass"], :type => "text" }
+
+%p.normal
+  %label{ :for => "campfire_notifier_announce_success" } Notify on success?
+  %input#campfire_notifier_announce_success{ :name => "notifiers[Campfire][announce_success]", :type => "checkbox", :checked => config['announce_success'], :value => "1" }

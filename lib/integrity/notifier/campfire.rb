@@ -11,7 +11,7 @@ module Integrity
       end
 
       def deliver!
-        room.speak "#{short_message}. #{commit_url}"
+        room.speak "#{short_message}. #{commit_url}" if announce_commit?
         room.paste full_message if commit.failed?
         room.leave
       end
@@ -40,6 +40,10 @@ Commit Author: #{commit.author.name}
 #{stripped_commit_output}
 EOM
       end
+    end
+
+    def announce_commit?
+      commit.failed? || config['announce_success']
     end
 
     register Campfire
