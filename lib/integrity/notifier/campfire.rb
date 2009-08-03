@@ -40,10 +40,10 @@ Commit Author: #{commit.author.name}
 #{stripped_commit_output}
 EOM
       end
-    end
 
-    def announce_commit?
-      commit.failed? || config['announce_success']
+      def announce_commit?
+        commit.failed? || config['announce_success']
+      end
     end
 
     register Campfire
